@@ -93,7 +93,7 @@ model_type = 'kinematic'
 nsamples = 100
 z_offset = models[name]['z_offset']
 
-earth_model_dir = os.path.join(working_dir,f'INPUT/{name}/model_{name}')
+earth_model_dir = os.path.join(working_dir,f'EQ/{name}/earth_model/model_{name}')
 f = open(earth_model_dir, "r")
 content = f.readlines()
 
