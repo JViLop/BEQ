@@ -1,0 +1,20 @@
+# This is a table that defines the input required for EDKS
+# any line whose first character is '#' will be ignored.
+# The fields required are:
+# BIN_tab4E : full path of the tab4E executable.
+# BIN_build_edks: full path of the build_edks executable.
+# ModPrefix : Name of the velocity model file prefix 
+#             if velocity model file is named "tohoku_3.model"
+#             then ModPrefix is "tohoku_3"
+# dR : step for calculating the horizontal distance of each station (km).
+# Rmax : Maximum horizontal distance for station (km).
+# depths : list of source depths (km)
+# 
+# Here follows an example of the file 
+BIN_tab4E        ${HOME}/static/edks/bin/tab4E
+BIN_build_edks   ${HOME}/static/edks/bin/build_edks
+ModPrefix        Iquique
+dR               5.0
+Rmax             1000.0
+#depths           1.00 3.00 5.00 8.07 9.71 12.34 16.35 22.07 29.69 39.25 50.71 63.94 69.0 71.0 75.0 80.0 95.0 100.0
+depths           1.00 5.00 8.07 12.34 16.35 29.69 39.25 63.94 69.0  75.0 100.0
