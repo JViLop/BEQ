@@ -9,7 +9,7 @@ from csi.displacement import Displacement
 from csi.curves import Curves
 from csi.ensemble import Observable,Ensemble_Displacement,Ensemble_Stress
 from csi.stress_change import Stress
-# from ensemble_01 import Ensemble_Stress
+
 pwd = os.getcwd()
 
 # ### Computing condensed curves ###
