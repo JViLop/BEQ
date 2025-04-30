@@ -5,10 +5,10 @@ import os
 # adding csi functions to the system path
 
 
-from csi.displacement import Displacement
-from csi.curves import Curves
-from csi.ensemble import Observable,Ensemble_Displacement,Ensemble_Stress
-from csi.stress_change import Stress
+from utils.displacement import Displacement
+from utils.curves import Curves
+from utils.ensemble import Observable,Ensemble_Displacement,Ensemble_Stress
+from utils.stress_change import Stress
 
 pwd = os.getcwd()
 
