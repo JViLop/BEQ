@@ -2,7 +2,7 @@ import sys
 import copy 
 
 from csi.okadafull import displacement, stress, strain
-from csi.observable import Observable
+from .observable import Observable
 import pandas as pd
 import numpy as np
 import os

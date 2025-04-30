@@ -3,23 +3,8 @@
 Created on Sat Nov 11 14:04:44 2023
 
 @author: joanv
+
 """
-
-# from utils.geom_reader import geom_reader
-# from utils.model_reader import model_reader
-
-       
-# model_reader('Pedernales','kinematic','h5',(8,10),15)   
-
-  
-# data = 'C:/Users/joanv/OneDrive/Escritorio/University_of_Oklahoma/GRA/EQ_source_models/EQ_source_models/EQ/Pedernales/model/kinematic/step_053.h5'
-
-# import h5py
-# import numpy as np
-# f = h5py.File(data,'r')
-# data = f['Sample Set']
-
-
 
 
 from utils.model_reader import EQ_model
