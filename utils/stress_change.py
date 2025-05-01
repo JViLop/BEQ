@@ -59,22 +59,10 @@ class Stress(Observable):
         
     def modify_stn(self):
         if self.new_station:
-            step = int(len(self.ystation)/len(self.ysrc))
-            unique_depth = np.flip(np.unique(self.depth))
-            unique_strike = np.flip(np.unique(self.strike_rad))
-          
-            unique_dip =np.flip(np.unique(self.dip_rad))
-            depth = np.ones((len(self.ystation),len(self.xstation)))
-            strike_rad = unique_strike[0]*np.ones((len(self.ystation),len(self.xstation)))
-            dip_rad = np.ones((len(self.ystation),len(self.xstation)))
-            for i in range(0,len(self.ystation),step):
-                j = int(i//step)
-                depth[i:i+step,:] = unique_depth[j]*depth[i:i+step,:] 
-                dip_rad[i:i+step,:] = unique_dip[j]*dip_rad[i:i+step,:] 
-            
-            self.zstn_flat = -depth.flatten()*1e3
-            self.strike_stn_rad = strike_rad.flatten()
-            self.dip_stn_rad = dip_rad.flatten()
+                  
+            self.zstn_flat = -self.depth.flatten()*1e3
+            self.strike_stn_rad = self.strike_rad.flatten()
+            self.dip_stn_rad = self.dip_rad.flatten()
         else:
             self.strike_stn_rad = self.strike_rad
             self.dip_stn_rad = self.strike_dip

@@ -45,7 +45,7 @@ smaxs = [35,15,15,15,15]
 
 models = model_dict(names,patches,sizes,nparameters,strikes,ylocs,dts,smaxs,scales,larrows)
 nsamples = 100
-names = ['Iquique','Pedernales']
+
 for name in names:
     event = Observable(pwd,name,'kinematic',None,False,models[name]['patch'],models[name]['size'],observable='RuptureTime',samples=nsamples,
                          new_station=None,xstation=None,ystation=None,strikeOkada = models[name]['strike'],factor=None)
@@ -57,7 +57,7 @@ for name in names:
         ens_stress = Ensemble_Stress(pwd,name,'kinematic',None,False,models[name]['patch'],models[name]['size'],nparameters =models[name]['nparameters'],new_station=True,xstation=ens_d.xsrc,ystation=ens_d.ysrc,RotAngle=360-99,samples = nsamples)
     elif name == 'Gorkha':
         ens_d = Ensemble_Displacement(pwd,name,'kinematic',None, False,models[name]['patch'],models[name]['size'],nparameters =models[name]['nparameters'],rake=107,samples  = nsamples)
-        ens_stress = Ensemble_Stress(pwd,name,'kinematic',None,False,models[name]['patch'],models[name]['size'],nparameters =models[name]['nparameters'],new_station=True,xstation=ens_d.xsrc,ystation=ens_d.ysrc,rake=107,samples = nsamples)
+        ens_stress = Ensemble_Stress(pwd,name,'kinematic',None,False,models[name]['patch'],models[name]['size'],nparameters =models[name]['nparameters'],rake=107,new_station=True,xstation=ens_d.xsrc,ystation=ens_d.ysrc,samples = nsamples)
     else:
         ens_d = Ensemble_Displacement(pwd,name,'kinematic',None, False,models[name]['patch'],models[name]['size'],nparameters =models[name]['nparameters'],samples  = nsamples)
         ens_stress = Ensemble_Stress(pwd,name,'kinematic',None,False,models[name]['patch'],models[name]['size'],nparameters =models[name]['nparameters'],new_station=True,xstation=ens_d.xsrc,ystation=ens_d.ysrc,samples = nsamples)
