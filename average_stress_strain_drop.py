@@ -55,7 +55,7 @@ def get_mu(model_parameters,depth):
 
 
 def layered_model(name):
-    f = open(f'1d_models/model_{name}', 'r')
+    f = open(os.path.join(os.getcwd(),f'1d_earth_models/model_{name}'), 'r')
     content = f.readlines()
     earth_model = content[12:]
     keys = re.findall('\w+',content[11],flags=re.DOTALL)
@@ -93,7 +93,7 @@ km = 1000
 def observables(name,parameters,shape,samples,dir_folder= 'histograms',rake=90, RotAngle=None,th=None):
 
 
-    df = pd.read_csv(f'INPUT/{name}/model/kinematic/{samples}_samples/mean/{name}_mean_kinematic_model.csv')
+    df = pd.read_csv(os.path.join(os.getcwd(),f'INPUT/{name}/model/kinematic/{samples}_samples/mean/{name}_mean_kinematic_model.csv'))
 
 
     nrows,ncols = models[name]['geom'][0],models[name]['geom'][1]
@@ -112,10 +112,10 @@ def observables(name,parameters,shape,samples,dir_folder= 'histograms',rake=90, 
     
         
     # binary data with sampled kinematic models     
-    bin_data = np.fromfile(f'INPUT/{name}/model/kinematic/{samples}_samples/bin_data/{name}_kinematic_n_{samples}.dat','float').reshape((parameters,int(samples)))
+    bin_data = np.fromfile(os.path.join(os.getcwd(),f'INPUT/{name}/model/kinematic/{samples}_samples/bin_data/{name}_kinematic_n_{samples}.dat'),'float').reshape((parameters,int(samples)))
     
     # HDF5 data with stress change ensemble 
-    data = h5py.File(f'stress_change_{samples}_samples/{name}_Stress change_nsamples_{samples}.h5')
+    data = h5py.File(os.path.join(os.getcwd(),f'OUTPUT/{name}/model/kinematic/Stress change/{samples}_samples/data_ensemble/{name}_Stress change_nsamples_{samples}.h5'))
 
 
     npatches = data['Stress change'].shape[1]//3
@@ -244,7 +244,7 @@ EQs = {'Tohoku':{'Mw':9.0,'n':866,'shape':(9,24),'edges_stress':[4,27],'edges_po
 
 
 
-def plot_all_hist_observables(EQs,samples= 1000,thr = [0.1,0.2],folder_out = 'stress_change_5000_samples'):
+def plot_all_hist_observables(EQs,samples= 1000,thr = [0.1,0.2],folder_out = 'Stress_Strain_drop'):
 
     stress = {'all':{},'10':{},'20':{}}
     std_stress =  {'all':{},'10':{},'20':{}}
@@ -349,12 +349,14 @@ def plot_all_hist_observables(EQs,samples= 1000,thr = [0.1,0.2],folder_out = 'st
 
     print('Stress (Homogeneous halfspace)\n:', df_stress)
     print('Potency (Homogeneous halfspace)\n:', df_potency)
+
     print('Stress (Layered):', df_stress_layered)
-    plt.savefig(f'{folder_out}/all_stress_potency_energy_averages_{samples}.pdf')
+    os.makedirs(os.path.join(os.getcwd(),f'{folder_out}'),exist_ok=True)
+    plt.savefig(os.path.join(os.getcwd(),f'{folder_out}/all_stress_potency_energy_averages_{samples}.pdf'))
     
     # plt.show()
 
 
-plot_all_hist_observables(EQs,samples = 5000)
+plot_all_hist_observables(EQs,samples = 100)
 
 

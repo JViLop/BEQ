@@ -107,12 +107,12 @@ for j,name in enumerate(names):
 
         
         
-        data = f'INPUT/{name}/model/kinematic/{samples}_samples/bin_data/{name}_kinematic_n_{samples}.dat'
+        data_dir = os.path.join(os.getcwd(),f'INPUT/{name}/model/kinematic/{samples}_samples/bin_data/{name}_kinematic_n_{samples}.dat')
         ncols, nrows = models[name]['ncols'],models[name]['nrows']
         
         Np = ncols*nrows
         patch = models[name]['patch']
-        data = np.fromfile(data,'double').reshape((models[name]['nparams'],samples))
+        data = np.fromfile(data_dir,'double').reshape((models[name]['nparams'],samples))
         
   
         xsrc = np.arange((1/2)*patch,ncols*patch,patch)
@@ -213,9 +213,9 @@ for j,name in enumerate(names):
 
             
        
-    folder = os.path.join(os.getcwd(),'global_corr/definite_figs')
+    folder = os.path.join(os.getcwd(),'individual_corr')
     os.makedirs(folder,exist_ok=True)
-    file_name = os.path.join(folder,f'merged_{name}_{th}_samples_{samples}_test.pdf')
+    file_name = os.path.join(folder,f'{name}_samples_{samples}.pdf')
     fig.savefig(file_name,bbox_inches='tight')
     plt.close(fig)
 

@@ -101,14 +101,14 @@ for j,name in enumerate(list(models.keys())):
     colors= list(reversed(colors))
     
     
-    data = f'INPUT/{name}/model/kinematic/{samples}_samples/bin_data/{name}_kinematic_n_{samples}.dat'
+    data_dir = os.path.join(os.getcwd(),f'INPUT/{name}/model/kinematic/{samples}_samples/bin_data/{name}_kinematic_n_{samples}.dat')
     ncols, nrows = models[name]['ncols'],models[name]['nrows']
     
     Np = ncols*nrows
     patch = models[name]['patch']
     nramp = models[name]['nramp']
     mag = models[name]['Mw']
-    data = np.fromfile(data,'double').reshape((models[name]['nparams'],samples))
+    data = np.fromfile(data_dir,'double').reshape((models[name]['nparams'],samples))
     
     
     xsrc = np.arange((1/2)*patch,ncols*patch,patch)
@@ -162,9 +162,9 @@ for j,name in enumerate(list(models.keys())):
         axes[k//2][k%2].set_box_aspect(1)
 
 plt.subplots_adjust(hspace = 0.25,wspace=-0.55)     
-folder = os.path.join(os.getcwd(),f'Cross_event/{samples}')
+folder = os.path.join(os.getcwd(),f'cross_event_corr')
 os.makedirs(folder,exist_ok=True)
-file_name = os.path.join(folder,f'cross_event_corr_samples_{samples}_{th}.pdf')
+file_name = os.path.join(folder,f'cross_event_corr_samples_{samples}_th_{th}.pdf')
 fig.savefig(file_name,bbox_inches='tight')
 plt.close(fig)
 
