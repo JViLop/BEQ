@@ -54,12 +54,12 @@
 
 python format_ensemble.py Iquique 10 1
 python run_ensemble.py Iquique 1 1 1 0
-mpirun -n 4 python forward_parallel.py Iquique 1
+mpirun -n 12 python forward_parallel.py Iquique 1
 for (( i=2; i<=10; i++));
 do
 	echo $i 
 	python run_ensemble.py Iquique $i 0 1 0
-	mpirun -n 4 python forward_parallel.py Iquique $i
+	mpirun -n 12 python forward_parallel.py Iquique $i
 	rm -rf Dynamic_Simulations/Iquique/100_samples/$i/GFs/dynamic
 done
 
