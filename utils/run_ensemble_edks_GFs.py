@@ -99,7 +99,7 @@ prefix = name
 #prefix = 'tohoku_nied_2_shifted2.8km'
 #edks = 'tohoku_layered_removed.edks'
 #prefix = 'tohoku_layered_removed'
-BIN_EDKS = '${HOME}/static/edks/bin'
+BIN_EDKS = '${HOME}/EDKS_py/bin'
 input_dir  = os.path.join(working_dir,f'INPUT/{name}/model/kinematic/{nsamples}_samples/mean/{name}_mean_kinematic_model.csv')
 
 nrows, ncols = models[name]['geom'][0], models[name]['geom'][1]

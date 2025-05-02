@@ -72,13 +72,10 @@ var = {}
 
 
 
-names = ['Tohoku','Illapel','Iquique','Pedernales','Gorkha']
-
 INDECES = {'Tohoku':[],'Illapel':[],'Iquique':[],'Gorkha':[],'Pedernales':[]}
 GRIDS = {'Tohoku':[],'Illapel':[],'Iquique':[],'Gorkha':[],'Pedernales':[]}
 
-names = ['Iquique','Pedernales']
-
+names = ['Tohoku','Iquique','Pedernales']
 nx = len(names)
 
 remainder = np.arange(int(nx*3*2))
