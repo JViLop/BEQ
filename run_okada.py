@@ -44,6 +44,10 @@ smaxs = [35,15,15,15,15]
 
 
 models = model_dict(names,patches,sizes,nparameters,strikes,ylocs,dts,smaxs,scales,larrows)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7e484ea9ee06a29c2f0e927badae552d9a9f15c6
 names = ['Iquique','Pedernales']
 nsamples = 100
 
