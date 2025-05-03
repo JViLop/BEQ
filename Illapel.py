@@ -5,39 +5,6 @@ Created on Sat Nov 11 14:04:09 2023
 @author: joanv
 """
 
-# from utils.geom_reader import geom_reader
-# from utils.model_reader import model_reader
-# before class 'EQ_model()'
-# #geom_reader('Illapel')        
-# model_reader('Illapel','kinematic','h5',(10,17),18)    
-
-
-  
-data = 'C:/Users/joanv/OneDrive/Escritorio/University_of_Oklahoma/GRA/EQ_source_models/EQ_source_models/EQ/Illapel/model/kinematic/step_052-001.h5'
-
-import h5py
-import numpy as np
-import matplotlib.pyplot as plt
-f = h5py.File(data,'r')
-
-
-Tr = np.array(f['ParameterSets']['risetime']).T
-# Vr = np.array(f['ParameterSets']['rupturevelocity']).T
-# U = np.sqrt(np.array(f['ParameterSets']['dipslip']).T**2 + np.array(f['ParameterSets']['strikeslip']).T**2)
-
-
-# slip_velocity = U/Tr
-
-# mean_slip_velocity = np.mean(slip_velocity,axis=1)
-# mean_Vr  = np.mean(Vr,axis=1)
-# #plt.scatter(mean_Vr ,mean_slip_velocity)
-# # plt.scatter(slip_velocity,Vr)
-# plt.xlabel('Slip Velocity')
-# plt.ylabel('Vr')
-# plt.title('Illapel')
-# plt.hist2d(Vr.flatten(),Tr.flatten(),bins=100)
-# plt.scatter(Vr,slip_velocity)
-# plt.scatter(np.array([[1,2],[3,4]]),np.array([[-1,-1],[3,3]]))
 from utils.model_reader import EQ_model
 
 #model = EQ_model('Illapel','kinematic','h5',(10,17),18,nramp=0,sampling=True, nsamples=50000)

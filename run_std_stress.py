@@ -276,22 +276,6 @@ def plot_mean_cov(name,file_name,file_name_mean,key,method = 'EDKS'):
     figure_dir = os.path.join(os.path.join(working_dir,f'OUTPUT/{name}/model/kinematic/Stress change/{nsamples}_samples/data_ensemble'),f'{method}_{name}_mean_and_uncertainty_n.png')	
     fig.savefig(figure_dir,dpi=700)
         
-	
-#plot_mean_cov(name,edks_file,key)
+
 plot_mean_cov(name,okada_file,mean_file,key,method='Okada')
-# def cov(self):
-#     dset  = self.read_h5file()
-#     self.covariance = np.cov(dset.transpose())
-    
-#     nparameters = dset.shape[1]
-    
-#     self.cov1 = self.covariance[:nparameters//3,:nparameters//3]
-#     self.cov2 = self.covariance[nparameters//3:2*nparameters//3,nparameters//3:2*nparameters//3]
-#     self.cov3 = self.covariance[2*nparameters//3:,2*nparameters//3:]
 
-#     # cov12 = cov[:nparameters//3,nparameters//3:2*nparameters//3]
-#     # standard deviation (= square root of variance)
-
-#     self.std1 = np.sqrt(self.cov1.diagonal())
-#     self.std2 = np.sqrt(self.cov2.diagonal())
-#     self.std3 = np.sqrt(self.cov3.diagonal())
