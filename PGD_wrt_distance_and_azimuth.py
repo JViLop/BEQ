@@ -316,7 +316,7 @@ for i,name in enumerate(names):
     axes[1].set_xlabel(r'Angle measured from strike line')
     axes[1].set_ylabel('PGD (cm)')
     fig.subplots_adjust(hspace=0.4)    
-plt.savefig('PGD_and strike.pdf')
+plt.savefig('PGD_wrt_distance_and_strike.pdf')
 plt.close()
 
 #### Azimuth dependence ###
