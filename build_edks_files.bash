@@ -1,3 +1,3 @@
 name=Tohoku
-mpirun -n 4 python MPI_EDKS.py edks_INPUT/${name}.edks_config
+mpirun -n 4 python utils/MPI_EDKS.py edks_INPUT/${name}.edks_config
 rm *.asc
