@@ -63,7 +63,7 @@ nepochs = 6
 nmodels = 2
 nsamples = 100
 npoints = 256
-names = ['Iquique']
+names = ['Iquique','Pedernales']
 for n,eq_name in enumerate(names):
     patch = models[eq_name]['patch']
     nrows,ncols = models[eq_name]['geom']
