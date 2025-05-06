@@ -1,1 +1,1 @@
-# Bayesian_EQmodels
+# Bayesian Earthquake models
