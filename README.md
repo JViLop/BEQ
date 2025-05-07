@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Posterior Exploration and Predictive Anlysis of Bayesian finite-fault earhtqyahe models
 
 ## Requirements
@@ -16,3 +17,6 @@ source init.bash
 ```
 
 
+=======
+# Bayesian Earthquake models
+>>>>>>> 37206b6926598b155cde631e3c5be18e770db86e
