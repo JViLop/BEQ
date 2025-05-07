@@ -1,0 +1,13 @@
+numpy
+meson
+ninja
+matplotlib
+pandas
+mpi4py
+scikit-learn
+h5py
+seaborn
+obspy
+pyproj
+shapely
+cartopy
