@@ -75,12 +75,12 @@ For all avents, run `python PGD_wrt_distance_and_azimuth.py` (pending integratio
 
 ## Create animations of dynamic displacement field
 
-For all events, run `animate.py` (pending integration)
+For all events, run `python animate.py` (pending integration)
 
 ## Plot slip and displacement with maps
 
 * For event called `Name`, run `python ${name}_georef.py` to plot slip with pygmt (segmentation fault issues when run in linux)
-* For all events, run `python deformation_map.py` to plot EDKS displacement with cartopy (segementation fault issues when run in linux)
+* For all events, run `python deformation_map.py` to plot EDKS displacement with cartopy (segmentation fault issues when run in linux)
 
 
 
