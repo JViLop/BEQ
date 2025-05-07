@@ -10,7 +10,7 @@
 
 ## Initialize
 
-* Change paths to python libraries in `init.bash` in own directories and `/.edks_config` files
+* Change paths to python libraries in `init.bash` and `/.edks_config` files according to own directory structure
 
 ```
 cd path/to/BEQ
@@ -25,7 +25,6 @@ This creates formatted files for subsequent analysis/calculations in `BEQ/INPUT`
 ## Posterior Analysis
 
 * For individual event correlation, run `python corr_parameters.py`.
-
 * For multi-event correlation comparison, run `python cross_event_corr.py`. 
 
 ## Run Okada
