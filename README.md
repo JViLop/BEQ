@@ -21,11 +21,12 @@ source init.bash
 
 ## Pre-process
 
-Given earthquake called `Name`, in terminal run `source ${Name}.py' (e.g., `Iquique.py`). Other functionalities and parameters (such as `nsamples`) can be set up in python module. This creates formatted files for subsequent analysis/calculations.
+Given earthquake called `Name`, in terminal run `source ${Name}.py` (e.g., `Iquique.py`). Other functionalities and parameters (such as `nsamples`) can be set up in python module. 
+This creates formatted files for subsequent analysis/calculations.
 
 ## Posterior Analysis
 
-* For individual event correlation, in terminal run `source corr_parameters.py` (need to change the hard-coded list with event names `[Name1, Name2,...]`)
+* For individual event correlation, in terminal run `source corr_parameters.py`.
 
 * For multi-event correlation comparison, run `source cross_event_corr.py`. 
 
@@ -36,4 +37,8 @@ For all events,  in terminal run `source run_okada.py` for displacement and stre
 ## Plot stress/strain drop distributions
 
 For all avents, in terminal run `source average_stress_strain_drop.py` for stress/strain drop histograms
+
  
+## Run EDKS
+Given earthquake name 
+
