@@ -46,15 +46,15 @@ For event called `Name`, run the following commands in sequence:
  
 Notes: Outputs are stored in `BEQ/OUTPUT`. Update number of processors accordingly in both `.bash` files. Check line 102 in `BEQ/utils/run_ensemble_edks_GFs.py` and update location of `BIN_EDKS` accordingly
  
-# Compare curves of slip, (EDKS) displacement and (Okada) stress
+## Compare curves of slip, (EDKS) displacement and (Okada) stress
 
 For all events, run `python curves_all.py` (pending integration)
 
-# Compare EDKS displacement correlation matrix with distance 
+## Compare EDKS displacement correlation matrix with distance 
 
 For all events, run `python corr_matrix.py`
 
-# Run dynamic simulations
+## Run dynamic simulations
 
 For event called `Name`, run:
 *  `source run_FK.bash`to calculate and assemble displacement waveforms.
@@ -63,25 +63,25 @@ For event called `Name`, run:
 Note: Outputs are stored in `BEQ/Dynamic_Simulations`
 
 
-# Create dynamic displacement field snapshots
+## Create dynamic displacement field snapshots
 
 For all events, run:
 * `python vector_field_snapshots.py`to create dynamic displacement field snapshots
 * `python std_vector_field_snapshots.py` to create uncertainty snapshots (pending integration)
 
  
-# Compare PGD with distance/azimuth
+## Compare PGD with distance/azimuth
 
 For all avents, run `python PGD_wrt_distance_and_azimuth.py` (pending integration)
 
-# Create animations of dynamic displacement field
+## Create animations of dynamic displacement field
 
 For all events, run `animate.py` (pending integration)
 
-# Plot slip and displacement with maps
+## Plot slip and displacement with maps
 
-For event called `Name`, run `python ${name}_georef.py` to plot slip with pygmt (segmentation fault issues when run in linux)
-For all events, run `python deformation_map.py` to plot EDKS displacement with cartopy (segementation fault issues when run in linux)
+* For event called `Name`, run `python ${name}_georef.py` to plot slip with pygmt (segmentation fault issues when run in linux)
+* For all events, run `python deformation_map.py` to plot EDKS displacement with cartopy (segementation fault issues when run in linux)
 
 
 
