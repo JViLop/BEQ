@@ -16,7 +16,7 @@
 cd path/to/BEQ
 source init.bash
 ```
-* Remove `.gitignore` files in `path/to/BEQ/EQ/name/kinematic/original_model_file` and then place respective model file `.dat` and `.file`
+* Remove `.gitignore` files in `path/to/BEQ/EQ/name/kinematic/original_model_file` and then place respective model file `.dat` or `.h5`
 
 ## Pre-process
 
