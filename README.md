@@ -6,7 +6,7 @@
 * CSI (https://github.com/jolivetr/csi.git)
 * EDKS (https://github.com/JViLop/EDKS_py.git)
 * MudPy (https://github.com/UO-Geophysics/MudPy.git)
-* Standard libraries (e.g., numpy, meson, ninja, ...)
+* Standard packages (in `requirements.txt`)
 
 ## Initialize
 
@@ -15,9 +15,8 @@
 ```
 cd path/to/BEQ
 source init.bash
-
 ```
-* Remove `.gitignore` files in `path/to/BEQ/EQ/name/kinematic/original_model_file`
+* Remove `.gitignore` files in `path/to/BEQ/EQ/name/kinematic/original_model_file` and then place respective model file `.dat` and `.file`
 
 ## Pre-process
 
@@ -40,5 +39,5 @@ For all avents, in terminal run `source average_stress_strain_drop.py` for stres
 
  
 ## Run EDKS
-Given earthquake name 
+Given earthquake `Name`
 
