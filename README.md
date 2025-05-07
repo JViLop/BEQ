@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Posterior Exploration and Predictive Anlysis of Bayesian finite-fault earhtqyahe models
 
 ## Requirements
@@ -11,12 +10,15 @@
 
 ## Initialize
 
+* Change paths to python libraries in `init.bash` in own directories and `.edks_config` files
+
 ```
-cd path\to\BEQ
+cd path/to/BEQ
 source init.bash
+
 ```
+* Remove `.gitignore` files in `path\to\BEQ\EQ\name\kinematic\original_model_file`
 
+## Pre-process
+Given earthquake called `name`, in terminal run `source ${name}.py`.Number of samples `nsamples` can be adjusted in python module.
 
-=======
-# Bayesian Earthquake models
->>>>>>> 37206b6926598b155cde631e3c5be18e770db86e
