@@ -73,70 +73,6 @@ model_type = 'kinematic'
 working_dir = os.getcwd()  
 
 
-
-
-# for q,name in enumerate(['Tohoku']):
-#     print(q)
-#     working_dir = os.getcwd()        
-#     mean_csv_file_dir = os.path.join(working_dir,f'{name}_mean_{model_type}_model.csv')
-#     df = pd.read_csv(mean_csv_file_dir)
-#     df= df.drop(df.columns[0],axis=1)    
-    
-#     nrows, ncols = models[name]['geom'][0], models[name]['geom'][1]
-#     patch = models[name]['patch']
-#     nparam = models[name]['nparam']
-    
-       
-
-#     xstn,ystn = set_stn(2,4,patch,control=1)
-    
-#     nrows_d,ncols_d = len(ystn),len(xstn)
-#     Xstn,Ystn = np.meshgrid(xstn,ystn)
-#     xstn_flat,ystn_flat =  Xstn.flatten(),Ystn.flatten()
-
-#     h5file_dir = os.path.join(working_dir,f'EDKS_{name}_{observable}_nsamples_{nsamples}.h5')
-    
-#     f = h5py.File(h5file_dir,'r')
-
-#     dset = np.array(f[observable])
-#     # covariance matrix
-
-#     mean = np.mean(dset,axis=0)
-#     corr = np.corrcoef(dset.transpose())
-#     nparameters = dset.shape[1]
-    
-#     mean_dx = mean[:nparameters//3]
-#     mean_dy = mean[nparameters//3:2*nparameters//3]
-#     mean_dz = mean[2*nparameters//3:]
-    
-#     mean_d = {'x':mean_dx,'y':mean_dy,'z':mean_dz}
-    
-   
-#     # covariance of each observable (x,y,z) 
-    
-
-#     corr1 = corr[:nparameters//3,:nparameters//3]
-#     corr2 = corr[nparameters//3:2*nparameters//3,nparameters//3:2*nparameters//3]
-#     corr3 = corr[2*nparameters//3:,2*nparameters//3:]
-    
-#     corr_d = {'x':corr1, 'y':corr2,'z':corr3}
-
-#     std_d = {'x':np.sqrt(np.diag(corr1)), 'y':np.sqrt(np.diag(corr2)),'z':np.sqrt(np.diag(corr3))}
-
-    
-#     d = np.sqrt(mean_dx**2 + mean_dy**2 + mean_dz**2)
-#     max_d_patch = np.argmin(abs(d-max(d)))
-#     d = np.reshape(d,(nrows_d,ncols_d))
-#     col0_max_d,row0_max_d = max_d_patch%ncols_d,max_d_patch//ncols_d
-    
-#     d_tn = np.reshape(mean_d['y'],(nrows_d,ncols_d))[:,col0_max_d]
-#     d_z = np.reshape(mean_d['z'],(nrows_d,ncols_d))[:,col0_max_d]
-#     err_tn = np.reshape(std_d['y'],(nrows_d,ncols_d))[:,col0_max_d]
-#     err_z =  np.reshape(std_d['y'],(nrows_d,ncols_d))[:,col0_max_d]
-    
-#     ystn_d,dy,err_dy,dz,err_dz = ystn, d_tn,err_tn,d_z,err_z
-
-
 names = ['Tohoku','Iquique','Illapel','Gorkha','Pedernales']
 
 nrows = [9,11,10,9,8]
@@ -176,17 +112,6 @@ model_type = 'kinematic'
 samples = 100
 offset = 75
 
-# file_m = f'{name}_{samples}_{model_type}_curve_m.csv'
-# df_m = pd.read_csv(file_m)
-# ysrc,m,err_m  = df_m['ysrc'].values,df_m['m'].values, df_m['err_m'].values
-
-# file_disp = f'{name}_{samples}_{model_type}_curve_displacement.csv'
-# df_d = pd.read_csv(file_disp)
-# ystn_d,dy,err_dy,dz,err_dz = df_d['ystn_d'].values,df_d['tn'].values, df_d['err_tn'].values,df_d['v'].values, df_d['err_v'].values
-
-# file_stress = f'{name}_{samples}_{model_type}_curve_stress.csv'
-# df_s = pd.read_csv(file_stress)
-# ystn_s,sn,err_sn,sy,err_sy = df_s['ytn_s'].values,df_s['n'].values, df_s['err_n'].values,df_s['ad'].values, df_s['err_ad'].values
 label_stress = ['normal','along-dip']
 label_displacement = ['trench-normal','vertical']
 color_stress = ['deepskyblue','blue']
@@ -206,18 +131,13 @@ gs11 = gs0[4].subgridspec(2,1,height_ratios=[1,1],hspace=0)
 grs = [gs00,gs01,gs02,gs10,gs11]
 nsamples = 100
 for k,name in enumerate(['Tohoku','Illapel','Iquique','Pedernales','Gorkha']):
-        if name=='Pedernales':
-          samples = 5000
-        else:
-          samples = 100
-          
-        file_m = f'summary_curves/{name}_{samples}_{model_type}_curve_m.csv'
+        file_m = os.path.join(working_dir,f'OUTPUT/{name}/model/kinematic/curves_observables/{nsamples}_samples/summary_curves/{name}_{nsamples}_{model_type}_curve_m.csv')
         df_m = pd.read_csv(file_m)
         ysrc,m,err_m  = df_m['ysrc'].values,df_m['m'].values, df_m['err_m'].values
         
         
       
-        mean_csv_file_dir = os.path.join(working_dir,f'{name}_mean_{model_type}_model.csv')
+        mean_csv_file_dir = os.path.join(working_dir,f'INPUT/{name}/model/kinematic/{nsamples}_samples/mean/{name}_mean_{model_type}_model.csv')
         df = pd.read_csv(mean_csv_file_dir)
         df= df.drop(df.columns[0],axis=1)    
         
@@ -233,7 +153,7 @@ for k,name in enumerate(['Tohoku','Illapel','Iquique','Pedernales','Gorkha']):
         Xstn,Ystn = np.meshgrid(xstn,ystn)
         xstn_flat,ystn_flat =  Xstn.flatten(),Ystn.flatten()
 
-        h5file_dir = os.path.join(working_dir,f'EDKS_{name}_{observable}_nsamples_{nsamples}.h5')
+        h5file_dir = os.path.join(working_dir,f'OUTPUT/{name}/model/kinematic/EDKS/{nsamples}_samples/EDKS_{name}_{observable}_nsamples_{nsamples}_parallel.h5')
         
         f = h5py.File(h5file_dir,'r')
 
@@ -302,7 +222,7 @@ for k,name in enumerate(['Tohoku','Illapel','Iquique','Pedernales','Gorkha']):
         #df_d = pd.read_csv(file_disp)
         #ystn_d,dy,err_dy,dz,err_dz = df_d['ystn_d'].values,df_d['tn'].values, df_d['err_tn'].values,df_d['v'].values, df_d['err_v'].values
 
-        file_stress = f'summary_curves/{name}_{samples}_{model_type}_curve_stress.csv'
+        file_stress = os.path.join(working_dir,f'OUTPUT/{name}/model/kinematic/curves_observables/{nsamples}_samples/summary_curves/{name}_{nsamples}_{model_type}_curve_stress.csv')
         df_s = pd.read_csv(file_stress)
         ystn_s,sn,err_sn,sy,err_sy = df_s['ytn_s'].values,df_s['n'].values, df_s['err_n'].values,df_s['ad'].values, df_s['err_ad'].values
 
