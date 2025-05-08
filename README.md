@@ -16,7 +16,8 @@
 cd path/to/BEQ
 source init.bash
 ```
-* Remove `.gitignore` files in `path/to/BEQ/EQ/name/kinematic/original_model_file` and then place respective model file `.dat` or `.h5`
+* Remove `.gitignore` files in `path/to/BEQ/EQ/name/kinematic/original_model_file` and place respective model file `.dat` or `.h5`
+* Copy python modules in `mudpy_src` and place then in `MudPy/src/python`
 
 ## Pre-process
 
@@ -47,7 +48,7 @@ Notes: Outputs are stored in `BEQ/OUTPUT`. Update number of processors according
  
 ## Compare curves of slip, (EDKS) displacement and (Okada) stress
 
-For all events, run `python curves_all.py` (pending integration)
+For all events, run `python curves_all.py`
 
 ## Compare EDKS displacement correlation matrix with distance 
 
