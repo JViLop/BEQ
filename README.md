@@ -72,7 +72,7 @@ For all events, run:
  
 ## Compare PGD with distance/azimuth
 
-For all avents, run `python PGD_wrt_distance_and_azimuth.py` (pending integration)
+For all avents, run `python PGD_wrt_distance_and_azimuth.py`
 
 ## Create animations of dynamic displacement field
 
