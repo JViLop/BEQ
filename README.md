@@ -17,7 +17,7 @@ cd path/to/BEQ
 source init.bash
 ```
 * Remove `.gitignore` files in `path/to/BEQ/EQ/name/kinematic/original_model_file` and place respective model file `.dat` or `.h5`
-* Copy python modules in `mudpy_src` and place then in `MudPy/src/python`
+* Copy python modules in `mudpy_src` and place them in `MudPy/src/python`
 
 ## Pre-process
 
