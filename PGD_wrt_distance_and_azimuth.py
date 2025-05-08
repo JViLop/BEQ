@@ -107,7 +107,7 @@ def max_disp_t(max_x):
 
 names = ['Tohoku','Illapel','Iquique','Pedernales','Gorkha']
 
-
+names = ['Iquique','Pedernales','Gorkha']
 markers = ['s','o','^','D','v']
 msizes = [8,6,6,4,4]
 colors = ['blue','','']
@@ -117,17 +117,14 @@ cmap = mpl.colormaps['hsv']
 
 # Take colors at regular intervals spanning the colormap.
 colors = cmap(np.linspace(0, 1, n_lines))
-
+nmodels = 1
+nsamples = 100
 colors = ['red','yellow','skyblue','blue','grey']
-names = ['Tohoku','Illapel','Iquique','Pedernales','Gorkha']
 fig,axes = plt.subplots(2,1,figsize=(7,6))
 for i,name in enumerate(names):
-    df = pd.read_csv(f'INPUT/{name}/model/kinematic/all_samples/mean/{name}_mean_kinematic_model.csv')
-    nsamples = 100
+    df = pd.read_csv(f'INPUT/{name}/model/kinematic/{nsamples}_samples/mean/{name}_mean_kinematic_model.csv')
     
     working_dir = os.getcwd()
-    #edks_file = os.path.join(working_dir,f'{name}/{nsamples}_samples/EDKS/EDKS_{name}_displacement_nsamples_{nsamples}.h5')
-    #okada_file = os.path.join(working_dir,f'{name}/{nsamples}_samples/Okada/Okada_{name}_displacement_nsamples_{nsamples}.h5')
 
     nrows,ncols = models[name]['geom'][0],models[name]['geom'][1]
     patch = models[name]['patch']
@@ -136,9 +133,7 @@ for i,name in enumerate(names):
     scale =  models[name]['scale']
     shrink = models[name]['shrink']
     hspace = models[name]['hspace']
-    folder = os.path.join(working_dir,'H5_60')
-    folder = os.path.join(folder,name)
-    nmodels  = 60
+    folder = os.path.join(working_dir,f'Dynamic_Simulations/{name}/{nsamples}_samples/H5_{nmodels}')
     npoints = 256
     x = np.arange(patch/2,ncols*patch,patch)
     y = np.arange(patch/2,nrows*patch,patch)
@@ -148,7 +143,6 @@ for i,name in enumerate(names):
     
     strike = strike*np.pi/180
     strike_corr = strike*(180/np.pi) - 90
-    nsamples = 100
     
     nstations = nrows*ncols
     npoints = 256

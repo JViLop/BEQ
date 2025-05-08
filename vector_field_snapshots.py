@@ -59,12 +59,12 @@ ith = {'x':0,'y':1,'z':2}
 
 nepochs = 6
 
-names =  ['Iquique']
+names =  ['Iquique','Pedernales','Gorkha']
 nx = len(names)
 width = 4 
 fig, axes = plt.subplots(nx,nepochs,figsize=(int(nepochs*width),int(width*nx)),dpi=700)
 nsamples = 100
-nmodels = 2
+nmodels = 1
 npoints = 256
 
 for n,eq_name in enumerate(names):

@@ -60,10 +60,10 @@ ith = {'x':0,'y':1,'z':2}
 
 nepochs = 6
 
-nmodels = 2
+nmodels = 1
 nsamples = 100
 npoints = 256
-names = ['Iquique','Pedernales']
+names = ['Iquique','Pedernales','Gorkha']
 for n,eq_name in enumerate(names):
     patch = models[eq_name]['patch']
     nrows,ncols = models[eq_name]['geom']
