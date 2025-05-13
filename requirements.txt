@@ -1,5 +1,6 @@
 numpy
 meson
+meson-python
 ninja
 matplotlib
 pandas
