@@ -12,15 +12,13 @@ import matplotlib.pyplot as plt
 
 from pylab import figure,setp
 
-
-
 import h5py
 
 import os 
 from matplotlib.colors import TwoSlopeNorm
 
 names = ['Tohoku','Iquique','Illapel','Gorkha','Pedernales']
-
+#n
 nrows = [9,11,10,9,8]
 ncols = [24,12,17,18,10]
 patches = [29,17,18,10,15]
