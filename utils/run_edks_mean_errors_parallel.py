@@ -27,8 +27,10 @@ wspaces = [0.30,0.4,0.4,0.5,0.3]
 sizes = [(14,6),(10,8),(10,6.0),(10,8),(14,7)]
 shrinks = [0.5,0.6,0.6,0.6,0.75]
 trench_name = ['kuriljapan','southamerica','southamerica','southamerica','MHT']
-lon_lim = [(137,143),(-74,-68),(-75,-69),(-82,-79),(84,87)]
-lat_lim = [(34,41.5),(-22,-17),(-34,-28),(-1.2,1.2),(26,30)]
+lon_lim = [(138,145),(-74,-68),(-75,-69),(-81,-80),(84,87)]
+lat_lim = [(34,44),(-22,-17),(-34,-28),(-1.,1.),(26,30)]
+
+
 def model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,trench_name,lon_lim,lat_lim):
     model = dict()
     for i,name in enumerate(names):
@@ -272,7 +274,7 @@ def plot_mean_cov(name,file_name,key,method = 'EDKS'):
     methodInt = 'linear'
 
     x,y = set_stn(2,4,patch,nrows,ncols,control=1)
-    xl,yl = set_stn(20,4,patch,nrows,ncols,control=1)
+    xl,yl = set_stn(40,4,patch,nrows,ncols,control=1)
     Xl,Yl = np.meshgrid(xl,yl)
     
     
@@ -290,8 +292,27 @@ def plot_mean_cov(name,file_name,key,method = 'EDKS'):
 
     trench_x = interp_x(trench_lon,trench_lat)
     trench_y = interp_y(trench_lon,trench_lat)
-    coast_x = interp_x(coast_lon,coast_lat)
-    coast_y = interp_y(coast_lon,coast_lat)
+    if name=='Tohoku':
+        
+        coast1 = np.loadtxt(os.path.join(os.getcwd(),f'boundaries/{name}_coast1.lonlat'))
+        coast_lon1  = coast1[:,0]
+        coast_lat1  = coast1[:,1]
+        coast_x1 = interp_x(coast_lon1,coast_lat1)
+        coast_y1 = interp_y(coast_lon1,coast_lat1)
+        
+        coast2 = np.loadtxt(os.path.join(os.getcwd(),f'boundaries/{name}_coast2.lonlat'))
+        coast_lon2  = coast2[:,0]
+        coast_lat2  = coast2[:,1]
+        coast_x2 = interp_x(coast_lon2,coast_lat2)
+        coast_y2 = interp_y(coast_lon2,coast_lat2)
+    
+    else:
+        coast = np.loadtxt(os.path.join(os.getcwd(),f'boundaries/{name}_coast.lonlat'))
+        coast_lon  = coast[:,0]
+        coast_lat  = coast[:,1]
+        coast_x = interp_x(coast_lon,coast_lat)
+        coast_y = interp_y(coast_lon,coast_lat)
+        
     nrows = len(y)
     ncols = len(x)
 
@@ -327,11 +348,24 @@ def plot_mean_cov(name,file_name,key,method = 'EDKS'):
         #X0, Y0 = np.meshgrid(x0, y0)
         #axes[i].plot(X0.flat, Y0.flat, 'o', color='black',markersize=2)
         axes[i][0].plot(trench_x,trench_y,color='black',lw=0.8)
-        axes[i][0].plot(coast_x,coast_y,color='gray',lw=0.8)
         axes[i][1].plot(trench_x,trench_y,color='black',lw=0.8)
-        axes[i][1].plot(coast_x,coast_y,color='gray',lw=0.8)
+
         axes[i][2].plot(trench_x,trench_y,color='black',lw=0.8)
-        axes[i][2].plot(coast_x,coast_y,color='gray',lw=0.8)
+
+        if name=='Tohoku':
+            axes[i][0].plot(coast_x1,coast_y1,color='gray',lw=0.8)
+            axes[i][1].plot(coast_x1,coast_y1,color='gray',lw=0.8)
+            axes[i][2].plot(coast_x1,coast_y1,color='gray',lw=0.8)
+            
+            axes[i][0].plot(coast_x2,coast_y2,color='gray',lw=0.8)
+            axes[i][1].plot(coast_x2,coast_y2,color='gray',lw=0.8)
+            axes[i][2].plot(coast_x2,coast_y2,color='gray',lw=0.8)
+        else:
+    
+            axes[i][0].plot(coast_x,coast_y,color='gray',lw=0.8)
+            axes[i][1].plot(coast_x,coast_y,color='gray',lw=0.8)
+            axes[i][2].plot(coast_x,coast_y,color='gray',lw=0.8)
+
        # axes[i][0].margins(0)
         #axes[i][1].margins(0)
         #axes[i][2].margins(0)
