@@ -31,8 +31,8 @@ wspaces = [0.30,0.4,0.4,0.5,0.3]
 sizes = [(14,6),(10,8),(10,6.0),(10,8),(14,7)]
 shrinks = [0.5,0.6,0.6,0.6,0.75]
 trench_name = ['kuriljapan','southamerica','southamerica','southamerica','MHT']
-lon_lim = [(139,144.5),(-74,-68),(-75,-69),(-83,-79),(80,89)]
-lat_lim = [(33,45.5),(-22,-17),(-33.5,-28),(-1.2,1.2),(26,32)]
+lon_lim = [(139,144.),(-74,-68),(-75,-69),(-83,-79),(80,89)]
+lat_lim = [(33,45.),(-22,-17),(-33.5,-28),(-1.2,1.2),(26,32)]
 
 country = [['JPN'],['CHL','PER'],['CHL'],['ECU'],['NPL']]
 def model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,trench_name,lon_lim,lat_lim,country):

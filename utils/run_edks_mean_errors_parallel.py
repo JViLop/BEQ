@@ -27,11 +27,11 @@ wspaces = [0.30,0.4,0.4,0.5,0.3]
 sizes = [(14,6),(10,8),(10,6.0),(10,8),(14,7)]
 shrinks = [0.5,0.6,0.6,0.6,0.75]
 trench_name = ['kuriljapan','southamerica','southamerica','southamerica','MHT']
-lon_lim = [(138,145),(-74,-68),(-75,-69),(-81,-80),(84,87)]
-lat_lim = [(34,44),(-22,-17),(-34,-28),(-1.,1.),(26,30)]
-
-
-def model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,trench_name,lon_lim,lat_lim):
+lon_lim = [(138,142),(-74,-68),(-75,-69),(-81,-80),(84,87)]
+lat_lim = [(34,43),(-22,-17),(-34,-28),(-1.2,1.2),(26,30)]
+tip_arrow = [(143.8,43.2),(-70,-18.25),(-71,-29.0),(-79.75,1.3),(84.75,29.2)]
+tail_arrow = [(143.8,42.2),(-70,-19),(-71,-30.0),(-79.75,0.1),(84.75,28.6)]
+def model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,trench_name,lon_lim,lat_lim,tail_arrow,tip_arrow):
     model = dict()
     for i,name in enumerate(names):
         model[name] = dict()
@@ -47,9 +47,11 @@ def model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,siz
         model[name]['trench'] = trench_name[i]
         model[name]['lon_lim'] = lon_lim[i]
         model[name]['lat_lim'] = lat_lim[i]
+        model[name]['tip'] = tip_arrow[i]
+        model[name]['tail'] = tail_arrow[i]
     return model
 
-models = model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,trench_name,lon_lim,lat_lim)
+models = model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,trench_name,lon_lim,lat_lim,tail_arrow,tip_arrow)
 
 nsamples = 100
 name = str(sys.argv[1])
@@ -227,6 +229,9 @@ def plot_mean_cov(name,file_name,key,method = 'EDKS'):
     trench_lat = trench_lat[ind_lat]
     trench_lon = trench_lon[ind_lat]
     
+    tail_lon,tail_lat = models[name]['tail']
+    tip_lon,tip_lat = models[name]['tip']
+    
     yS = proj_ysrc_coords(patch,df['dip'].values[:nrows])
     
     xs,ys = set_stn(1,1,patch,nrows,ncols,control=0)
@@ -292,6 +297,13 @@ def plot_mean_cov(name,file_name,key,method = 'EDKS'):
 
     trench_x = interp_x(trench_lon,trench_lat)
     trench_y = interp_y(trench_lon,trench_lat)
+    
+    
+    tail_x = interp_x([tail_lon],[tail_lat])
+    tail_y = interp_y([tail_lon],[tail_lat])
+    
+    tip_x = interp_x([tip_lon],[tip_lat])
+    tip_y = interp_y([tip_lon],[tip_lat])
     if name=='Tohoku':
         
         coast1 = np.loadtxt(os.path.join(os.getcwd(),f'boundaries/{name}_coast1.lonlat'))
@@ -347,6 +359,11 @@ def plot_mean_cov(name,file_name,key,method = 'EDKS'):
         # axes[i].scatter(x[ncol_target]*np.ones(len(y)),y,marker='_',color='black',s=3)
         #X0, Y0 = np.meshgrid(x0, y0)
         #axes[i].plot(X0.flat, Y0.flat, 'o', color='black',markersize=2)
+        axes[i][0].annotate("N", xy=(tip_x,tip_y), xytext=(tail_x,tail_y),arrowprops=dict(facecolor='red',arrowstyle="->"))
+        axes[i][1].annotate("N", xy=(tip_x,tip_y), xytext=(tail_x,tail_y),arrowprops=dict(facecolor='red',arrowstyle="->"))
+        axes[i][2].annotate("N", xy=(tip_x,tip_y), xytext=(tail_x,tail_y),arrowprops=dict(facecolor='red',arrowstyle="->"))
+
+
         axes[i][0].plot(trench_x,trench_y,color='black',lw=0.8)
         axes[i][1].plot(trench_x,trench_y,color='black',lw=0.8)
 
