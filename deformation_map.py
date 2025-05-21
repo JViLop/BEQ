@@ -18,7 +18,7 @@ import h5py
 from scipy.interpolate import RegularGridInterpolator
 from matplotlib.colors import TwoSlopeNorm
 import cartopy.io.shapereader as shpreader
-
+import os
 
 NATIONS = {'Tohoku':'JPN',
            'Iquique':'CHL',
@@ -35,10 +35,11 @@ hspaces = [0,0.5,0.5,0.5,0.5]
 wspaces = [0.2,0.3,0.4,0.3,0.4]
 sizes = [(14,16),(10,11),(10,12),(10,11),(14,16)]
 shrinks = [0.5,0.5,0.5,0.5,0.2]
+trench_name = ['kuriljapan','southamerica','southamerica','southamerica','MHT']
 limits_model = [[138,145,35,44],[-73,-69,-21,-18],[-74,-70,-32,-29],[-82,-79,-1,1],[84,87,27,29]]
 limits_disp = [[138-1,145+2,35-2,44+2],[-72-1,-69+1,-21-1,-18+1],[-72-2,-70+1,-33-1,-29+1],[-81-1,-80+1,-1-0.5,1+0.5],[84-0.25,87,27-0.25,29+0.25]]
 nsamples = 100
-def model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,limits_model,limits_disp):
+def model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,trench_name,limits_model,limits_disp):
     model = dict()
     for i,name in enumerate(names):
         model[name] = dict()
@@ -51,11 +52,12 @@ def model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,siz
         model[name]['wspace'] = wspaces[i]
         model[name]['size'] = sizes[i]
         model[name]['shrink'] = shrinks[i]
+        model[name]['trench'] = trench_name[i]
         model[name]['limits_model'] = limits_model[i]
         model[name]['limits_disp'] = limits_disp[i]
     return model
 
-models = model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,limits_model,limits_disp)
+models = model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,trench_name,limits_model,limits_disp)
 
 def set_stn(c,factor,patch,geom,control=0):
       nrows,ncols =geom[0],geom[1]
@@ -89,7 +91,7 @@ geodetic = ccrs.Geodetic(globe=ccrs.Globe(datum='WGS84'))
 # geographical projection used: 'PlateCarree'
 proj = ccrs.PlateCarree()
 
-
+working_dir = os.getcwd()
 
 names = ['Tohoku','Illapel','Iquique','Pedernales','Gorkha']
 
@@ -127,7 +129,7 @@ for l,name in enumerate(names):
   nrows,ncols = models[name]['geom'][0],models[name]['geom'][1]
   patch = models[name]['patch']
   print(patch)
-  df = pd.read_csv(f'{name}_mean_kinematic_model.csv')
+  df = pd.read_csv(f'INPUT/{name}/model/kinematic/{nsamples}_samples/mean/{name}_mean_kinematic_model.csv')
   strike = np.mean(df['strike'].values)
   X = df['lon'].values
   Y = df['lat'].values
@@ -139,7 +141,7 @@ for l,name in enumerate(names):
   hypo_as = df['Hypo_as'].values
   hypo_dd = df['Hypo_dd'].values
   dictionary = {'U_parallel':U_parallel,'U_perp':U_perp,'std_U_parallel':std_U_parallel,'std_U_perp':std_U_perp}
-
+  trench_name = models[name]['trench']
   shape = (nrows,ncols)
 
 
@@ -184,8 +186,8 @@ for l,name in enumerate(names):
 
 
 
-
-  h5f_name_edks =  f'EDKS_{name}_displacement_nsamples_{nsamples}.h5'
+  h5file_dir = os.path.join(working_dir,f'OUTPUT/{name}/model/kinematic/EDKS/{nsamples}_samples')
+  h5f_name_edks = os.path.join(h5file_dir,f'EDKS_{name}_displacement_nsamples_{nsamples}_parallel.h5')
 
 
 
@@ -198,6 +200,11 @@ for l,name in enumerate(names):
   N_edks = np.mean(h5file_edks['displacement'][:,int(size/3):2*int(size/3)],axis=0)
   Z_edks = np.mean(h5file_edks['displacement'][:,2*int(size/3):],axis=0)
 
+
+  trench_dir = os.path.join(working_dir,f'Trench_TPGA/{trench_name}.lonlat')
+  trench = np.loadtxt(trench_dir)
+  trench_lon = trench[:,0]
+  trench_lat = trench[:,1]
   Z=Z_edks
 
   # next two lines give error   
@@ -214,7 +221,11 @@ for l,name in enumerate(names):
   # set ocean and land features
   ax.add_feature(cfeature.LAND, color='lightgray')
   ax.add_feature(cfeature.OCEAN, color='skyblue')
-
+  if name=='Gorkha':
+      markevery = 5
+  else:
+      markevery = 25
+  ax.plot(trench_lon,trench_lat,color='black',lw=0.4,marker=">",markevery=markevery,ms=0.8)
 
 
   # set US state boudaries

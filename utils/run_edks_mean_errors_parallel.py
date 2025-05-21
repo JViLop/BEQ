@@ -29,8 +29,8 @@ shrinks = [0.5,0.6,0.6,0.6,0.75]
 trench_name = ['kuriljapan','southamerica','southamerica','southamerica','MHT']
 lon_lim = [(138,142),(-74,-68),(-75,-69),(-81,-80),(84,87)]
 lat_lim = [(34,43),(-22,-17),(-34,-28),(-1.2,1.2),(26,30)]
-tip_arrow = [(143.8,43.2),(-70,-18.25),(-71,-29.0),(-79.75,1.3),(84.75,29.2)]
-tail_arrow = [(143.8,42.2),(-70,-19),(-71,-30.0),(-79.75,0.1),(84.75,28.6)]
+tip_arrow = [(143.8,43.2),(-70,-18.25),(-71,-29.0),(-79.75,1.2),(84.75,28.85)]
+tail_arrow = [(143.8,42.2),(-70,-19),(-71,-30.0),(-79.75,0.3),(84.75,28.4)]
 def model_dict(names,geoms,patches,arrow_sizes,nparams,rakes,hspaces,wspaces,sizes,shrinks,trench_name,lon_lim,lat_lim,tail_arrow,tip_arrow):
     model = dict()
     for i,name in enumerate(names):
@@ -362,6 +362,8 @@ def plot_mean_cov(name,file_name,key,method = 'EDKS'):
         axes[i][0].annotate("N", xy=(tip_x,tip_y), xytext=(tail_x,tail_y),arrowprops=dict(facecolor='red',arrowstyle="->"))
         axes[i][1].annotate("N", xy=(tip_x,tip_y), xytext=(tail_x,tail_y),arrowprops=dict(facecolor='red',arrowstyle="->"))
         axes[i][2].annotate("N", xy=(tip_x,tip_y), xytext=(tail_x,tail_y),arrowprops=dict(facecolor='red',arrowstyle="->"))
+
+
 
 
         axes[i][0].plot(trench_x,trench_y,color='black',lw=0.8)

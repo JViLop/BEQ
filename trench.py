@@ -20,8 +20,8 @@ import cartopy.io.shapereader as shpreader
 
 import os 
 
-# for name in ['Tohoku','Iquique','Illapel','Pedernales','Gorkha']:
-for name in ['Gorkha']:
+for name in ['Tohoku','Iquique','Illapel','Pedernales','Gorkha']:
+# for name in ['Gorkha']:
     os.system(f'python utils/run_edks_mean_errors_parallel.py {name}')
     
 
