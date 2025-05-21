@@ -30,9 +30,9 @@ This creates formatted files for subsequent analysis/calculations in `BEQ/INPUT`
 
 ## Run Okada
 
-*For all events,  run `python run_okada.py` for displacement and stress calculations. This produces stress change calculations.
+* For all events,  run `python run_okada.py` for displacement and stress calculations. This produces stress change calculations.
 
-*For stress figures with mean distributions + absolute and relative uncertainty, `source run_std_stress.bash`.	 
+* For stress figures with mean distributions + absolute and relative uncertainty, `source run_std_stress.bash`.	 
 Note: Outputs are stored in `BEQ/OUTPUT`
 ## Plot stress/strain drop distributions
 
