@@ -5,14 +5,6 @@ Created on Wed Jan 15 15:16:39 2025
 @author: joanv
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Aug 15 15:20:16 2024
-
-@author: joanv
-"""
-
-
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler

@@ -34,7 +34,7 @@ solve=int(sys.argv[5]) # =1 solves forward problem or runs inverse calculation, 
 ###############################################################################
 
 ###############            Green function parameters               #############
-ncpus=4  #
+ncpus=10  #
 hot_start=0  #Start at a certain subfault number
 static=0  #=1 computes static GFs only, =0 computes the complete waveform
 tsunami=False

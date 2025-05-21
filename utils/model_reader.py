@@ -840,7 +840,7 @@ class EQ_model:
 
     def plot_distribution(self,parameter_type:str,parameter,figure_s,color_bar_label,padding):
         nrows,ncols = self.nrows, self.ncols
-        X,Y = self.X, self.Y
+        X,Y = np.meshgrid(self.x,self.y)
         if parameter_type == 'mean':
             dictionary = self.mean_d
         elif parameter_type == 'std':
