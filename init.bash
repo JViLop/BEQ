@@ -1,6 +1,6 @@
 # activate virtual environment 
 
-source ~/.venv/benchmark/bin/activate
+source ~/.venv/BEQ/bin/activate
 
 # EDKS 
 export EDKS_HOME=${HOME}/EDKS_py
@@ -18,7 +18,7 @@ export OMP_NUM_THREADS=4
 #export PYTHONPATH=${mpi4py_HOME}:${PYTHONPATH}
 
 # CSI
-export PYTHONPATH=$HOME/static:$PYTHONPATH 
+export PYTHONPATH=$HOME/csi:$PYTHONPATH 
 
 # MudPy
 export PYTHONPATH=$HOME/MudPy/src/python:$PYTHONPATH

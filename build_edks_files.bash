@@ -1,3 +1,4 @@
-name=Tohoku
-mpirun -n 4 python utils/MPI_EDKS.py edks_INPUT/${name}.edks_config
+name=Gorkha
+nproc=10
+mpirun -n ${nproc} python utils/MPI_EDKS.py edks_INPUT/${name}.edks_config
 rm *.asc
